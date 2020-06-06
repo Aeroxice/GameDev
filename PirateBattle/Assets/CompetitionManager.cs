@@ -12,11 +12,11 @@ public class CompetitionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BaseAI[] aiArray = new BaseAI[] {
-            new IljaAI(), 
+        BaseAI[] aiArray = new BaseAI[] {             
             new RoyAI(), 
             new RoyAI0(), 
-            new RoyAI1()
+            new RoyAI1(),
+            new RoyAI2()
         };
 
 

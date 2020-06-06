@@ -20,7 +20,7 @@ public class PirateShipController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     public void SetAI(BaseAI _ai) {
@@ -51,6 +51,7 @@ public class PirateShipController : MonoBehaviour
     {
         if(collision.gameObject.tag == "CannonBall")
         {
+            GetComponent<AudioSource>().Play(0);
             CannonBall cannonball = collision.gameObject.GetComponent(typeof(CannonBall)) as CannonBall;
             Health -= cannonball.damage;
             Debug.Log(Health);

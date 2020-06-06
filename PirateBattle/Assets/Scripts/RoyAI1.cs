@@ -6,7 +6,8 @@ public class RoyAI1 : BaseAI
 {
     public override IEnumerator RunAI()
     {
-        yield return BoatSpeed(12.0f);
+        yield return BoatSpeed(75.0f);
+        yield return Health(1000.0f);
 
         while (true)
         {
@@ -17,7 +18,7 @@ public class RoyAI1 : BaseAI
             //yield return TurnLeft(360);
             //yield return FireLeft(1);
             //yield return TurnLookoutRight(180);
-            yield return Back(200.0f);
+            //yield return Back(200.0f);
             //yield return FireRight(1);
             //yield return TurnLookoutLeft(90);
             //yield return TurnRight(90);

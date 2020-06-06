@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IljaAI : BaseAI
+public class RoyAI2 : BaseAI
 {
     public override IEnumerator RunAI() {
 
-        yield return BoatSpeed(75.0f);
-        
+        yield return BoatSpeed(125.0f);
+        yield return Health(600.0f);
 
         for (int i = 0; i < 10; i++)
         {
             yield return Ahead(200);
-            yield return FireFront(1);
-            yield return TurnRight(90);
-            yield return TurnLeft(90);
-            yield return FireFront(1);
+            //yield return FireFront(1);
+            //yield return TurnRight(90);
+            //yield return TurnLeft(90);
+            //yield return FireFront(1);
             /*yield return FireFront(1);
             yield return FireFront(1);
             yield return FireFront(1);
