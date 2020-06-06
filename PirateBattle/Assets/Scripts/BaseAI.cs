@@ -17,6 +17,16 @@ public class BaseAI
         // 
     }
 
+    public IEnumerator BoatSpeed(float speed)
+    {
+        yield return Ship.__BoatSpeed(speed);
+    }
+
+    public IEnumerator Health(float hp)
+    {
+        yield return Ship.__Health(hp);
+    }
+
     public IEnumerator Ahead(float distance) {
         yield return Ship.__Ahead(distance);
     }

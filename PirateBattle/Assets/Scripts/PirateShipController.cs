@@ -12,14 +12,15 @@ public class PirateShipController : MonoBehaviour
     public GameObject[] sails = null;
     private BaseAI ai = null;
 
-    private float BoatSpeed = 100.0f;
+    private float BoatSpeed = 0f;
     private float SeaSize = 500.0f;
     private float RotationSpeed = 180.0f;
+    private float Health = 1000.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     public void SetAI(BaseAI _ai) {
@@ -44,6 +45,35 @@ public class PirateShipController : MonoBehaviour
             scannedRobotEvent.Name = other.name;
             ai.OnScannedRobot(scannedRobotEvent);
         }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "CannonBall")
+        {
+            CannonBall cannonball = collision.gameObject.GetComponent(typeof(CannonBall)) as CannonBall;
+            Health -= cannonball.damage;
+            Debug.Log(Health);
+            if(Health <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+       
+    }
+
+    public IEnumerator __BoatSpeed(float speed)
+    {
+        BoatSpeed = speed;
+
+        yield return new WaitForFixedUpdate();
+    }
+
+    public IEnumerator __Health(float hp)
+    {
+        Health = hp;
+
+        yield return new WaitForFixedUpdate();
     }
 
     public IEnumerator __Ahead(float distance) {

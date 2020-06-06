@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Trigger
   - Boat
+  - CannonBall
   layers:
   - Default
   - TransparentFX

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CannonBall : MonoBehaviour
 {
+    public float damage = 200.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,10 @@ public class CannonBall : MonoBehaviour
     void FixedUpdate()
     {
         transform.Translate(new Vector3(0f, 0f, 500 * Time.fixedDeltaTime), Space.Self);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Destroy(gameObject);
     }
 }

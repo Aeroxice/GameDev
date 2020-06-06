@@ -14,10 +14,11 @@ public class CompetitionManager : MonoBehaviour
     {
         BaseAI[] aiArray = new BaseAI[] {
             new IljaAI(), 
-            new PondAI(), 
-            new PondAI(), 
-            new PondAI()
+            new RoyAI(), 
+            new RoyAI0(), 
+            new RoyAI1()
         };
+
 
         for (int i = 0; i < 4; i++)
         {
