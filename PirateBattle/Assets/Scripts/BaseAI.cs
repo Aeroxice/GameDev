@@ -22,6 +22,11 @@ public class BaseAI
         yield return Ship.__BoatSpeed(speed);
     }
 
+    public IEnumerator FireRate(float rate)
+    {
+        yield return Ship.__FireRate(rate);
+    }
+
     public IEnumerator Health(float hp)
     {
         yield return Ship.__Health(hp);

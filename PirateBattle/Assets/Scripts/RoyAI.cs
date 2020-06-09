@@ -8,11 +8,15 @@ public class RoyAI : BaseAI
     {
         yield return BoatSpeed(100.0f);
         yield return Health(800.0f);
+        yield return FireRate(1f);
 
         while (true)
         {
-
-            yield return Ahead(200.0f);
+            yield return Ahead(Random.Range(100.0f, 600.0f));
+            yield return TurnRight(Random.Range(30.0f, 180.0f));
+            yield return Ahead(Random.Range(100.0f, 600.0f));
+            yield return TurnLeft(Random.Range(30.0f, 180.0f));
+ 
             //yield return FireFront(1);
             //yield return TurnLookoutLeft(90);
             //yield return TurnLeft(360);

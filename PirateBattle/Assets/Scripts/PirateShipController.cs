@@ -16,6 +16,8 @@ public class PirateShipController : MonoBehaviour
     private float SeaSize = 500.0f;
     private float RotationSpeed = 180.0f;
     private float Health = 1000.0f;
+    private float FireRate = 1.0f;
+    private bool AllowFire = true;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +31,7 @@ public class PirateShipController : MonoBehaviour
     }
 
     public void StartBattle() {
-        Debug.Log("test");
+        //Debug.Log("test");
         StartCoroutine(ai.RunAI());
     }
 
@@ -38,12 +40,26 @@ public class PirateShipController : MonoBehaviour
     {
     }
 
+    IEnumerator Fire()
+    {
+        AllowFire = false;
+        GameObject newInstance = Instantiate(CannonBallPrefab, CannonFrontSpawnPoint.position, CannonFrontSpawnPoint.rotation);
+        yield return new WaitForSeconds(FireRate);
+        AllowFire = true;
+        GetComponent<AudioSource>().Play(0);
+    }
+
     void OnTriggerStay(Collider other) {
         if (other.tag == "Boat") {
             ScannedRobotEvent scannedRobotEvent = new ScannedRobotEvent();
             scannedRobotEvent.Distance = Vector3.Distance(transform.position, other.transform.position);
             scannedRobotEvent.Name = other.name;
             ai.OnScannedRobot(scannedRobotEvent);
+
+            if (AllowFire)
+            {
+                StartCoroutine (Fire());
+            }
         }
     }
 
@@ -51,7 +67,6 @@ public class PirateShipController : MonoBehaviour
     {
         if(collision.gameObject.tag == "CannonBall")
         {
-            GetComponent<AudioSource>().Play(0);
             CannonBall cannonball = collision.gameObject.GetComponent(typeof(CannonBall)) as CannonBall;
             Health -= cannonball.damage;
             Debug.Log(Health);
@@ -61,6 +76,13 @@ public class PirateShipController : MonoBehaviour
             }
         }
        
+    }
+
+    public IEnumerator __FireRate(float rate)
+    {
+        FireRate = rate;
+
+        yield return new WaitForFixedUpdate();
     }
 
     public IEnumerator __BoatSpeed(float speed)

@@ -18,8 +18,11 @@ public class CannonBall : MonoBehaviour
         transform.Translate(new Vector3(0f, 0f, 500 * Time.fixedDeltaTime), Space.Self);
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision other)
     {
-        Destroy(gameObject);
+        if (other.gameObject.tag == "Boat")
+        {
+            Destroy(gameObject);
+        }
     }
 }
