@@ -17,14 +17,14 @@ public class BaseAI
         // 
     }
 
+    public IEnumerator Move()
+    {
+        yield return Ship.__Move();
+    }
+
     public IEnumerator BoatSpeed(float speed)
     {
         yield return Ship.__BoatSpeed(speed);
-    }
-
-    public IEnumerator FireRate(float rate)
-    {
-        yield return Ship.__FireRate(rate);
     }
 
     public IEnumerator Health(float hp)

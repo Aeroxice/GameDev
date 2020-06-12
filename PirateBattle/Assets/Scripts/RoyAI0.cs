@@ -13,16 +13,13 @@ public class RoyAI0 : BaseAI
 
     private RoyAIState state;
     public bool Shooting = false;
-    //public Vector3 Target;
     public float TargetDistance = 1000;
-    //public Vector3 ShipLocation;
 
 
     public override IEnumerator RunAI()
     {
         yield return BoatSpeed(120.0f);
         yield return Health(1000.0f);
-        yield return FireRate(1f);
 
         state = RoyAIState.Roam;
 
@@ -36,19 +33,14 @@ public class RoyAI0 : BaseAI
                     yield return FireFront(1);
                     Shooting = false;
                     yield return new WaitForSeconds(0.5f);
-                    Debug.Log("poop2");
                 }
                 else if (TargetDistance > 250 && Shooting)
                 {
                     state = RoyAIState.Chase;
-                    Debug.Log("poop");
                 }
                 else
                 {
-                    yield return Ahead(Random.Range(30.0f, 50.0f));
-                    yield return TurnRight(Random.Range(30.0f, 50.0f));
-                    yield return Ahead(Random.Range(10.0f, 50.0f));
-                    yield return TurnLeft(Random.Range(30.0f, 50.0f));
+                    yield return Move();
                 }
             }
             else if (state == RoyAIState.Chase)
@@ -57,7 +49,7 @@ public class RoyAI0 : BaseAI
                 {
                     yield return Ahead(10f);
                 }
-                else if (Ship.Health <= 400)
+                else if (Ship.Health <= 200 && Shooting)
                 {
                     state = RoyAIState.Retreat;
                 }
@@ -67,7 +59,7 @@ public class RoyAI0 : BaseAI
                     yield return FireFront(1);
                     Shooting = false;
                     yield return new WaitForSeconds(0.5f);
-                }                
+                }
                 else
                 {
                     state = RoyAIState.Roam;
@@ -75,9 +67,20 @@ public class RoyAI0 : BaseAI
             }
             else if (state == RoyAIState.Retreat)
             {
-                if (Ship.Health <= 400 && Shooting)
+                if (Ship.Health <= 200 && Shooting)
                 {
-                    yield return Back(10f);
+                    yield return Move();
+                    Debug.Log("Chuckle I'm in Danger");
+
+                    if (TargetDistance <= 250 && Shooting)
+                    {
+                        yield return FireFront(1);
+                        yield return new WaitForSeconds(0.5f);
+                    }
+                    else
+                    {
+                        state = RoyAIState.Roam;
+                    }
                 }
             }
 
@@ -100,9 +103,7 @@ public class RoyAI0 : BaseAI
     public override void OnScannedRobot(ScannedRobotEvent e, Vector3 temp)
     {
         Ship.transform.LookAt(temp);
-        //Target = e.transform.position;
         TargetDistance = e.Distance;
         Shooting = true;
-        Debug.Log("Ship detected: " + e.Name + " at distance: " + e.Distance);
     }
 }
