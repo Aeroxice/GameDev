@@ -12,22 +12,22 @@ public class BaseAI
     public PirateShipController Ship = null;
 
     // Events
-    public virtual void OnScannedRobot(ScannedRobotEvent e, Vector3 temp)
+    public virtual void OnScannedRobot(ScannedRobotEvent e, Vector3 temp) //Added Vector3 temp to be able to check for TargetDistance
     {
         // 
     }
 
     public IEnumerator Move()
     {
-        yield return Ship.__Move();
+        yield return Ship.__Move(); //Allow the AI to access Move()
     }
 
-    public IEnumerator BoatSpeed(float speed)
+    public IEnumerator BoatSpeed(float speed)   
     {
-        yield return Ship.__BoatSpeed(speed);
+        yield return Ship.__BoatSpeed(speed);   //Allow the AI to access BoatSpeed
     }
 
-    public IEnumerator Health(float hp)
+    public IEnumerator Health(float hp)     //Allow the AI to access Health
     {
         yield return Ship.__Health(hp);
     }

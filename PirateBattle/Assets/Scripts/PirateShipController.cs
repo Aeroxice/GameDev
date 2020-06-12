@@ -12,16 +12,16 @@ public class PirateShipController : MonoBehaviour
     public GameObject[] sails = null;
     private BaseAI ai = null;
 
-    private float BoatSpeed = 0f;
+    private float BoatSpeed = 0f;   //Float to make speed adjustable by AI
     private float SeaSize = 500.0f;
     private float RotationSpeed = 180.0f;
-    public float Health = 1000.0f;   
-    public Vector3 newPosition;
+    public float Health = 1000.0f;   //Base value for hp. Adjustable by AI
+    public Vector3 newPosition;     //Random position on the play area
 
     // Start is called before the first frame update
     void Start()
     {
-        newPosition = this.transform.localPosition;
+        newPosition = this.transform.localPosition; //Sets newPosition to the location of the ship
     }
 
     public void SetAI(BaseAI _ai)
@@ -54,14 +54,13 @@ public class PirateShipController : MonoBehaviour
 
         void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.tag == "CannonBall")
+            if (collision.gameObject.tag == "CannonBall") //Checking for collision between ship and CannonBall
             {
-                CannonBall cannonball = collision.gameObject.GetComponent(typeof(CannonBall)) as CannonBall;
-                Health -= cannonball.damage;
-                Debug.Log(Health);
-                if (Health <= 0)
+                CannonBall cannonball = collision.gameObject.GetComponent(typeof(CannonBall)) as CannonBall; //Reference to the CannonBall script
+                Health -= cannonball.damage;    //Calculates health after collision
+                if (Health <= 0)    //Check if the ship has health
                 {
-                    Destroy(gameObject);
+                    Destroy(gameObject);//Destroys the ship
                 }
             }
 
@@ -69,28 +68,26 @@ public class PirateShipController : MonoBehaviour
 
     public IEnumerator __Move()
     {
-        if (newPosition == this.transform.localPosition)
+        if (newPosition == this.transform.localPosition)    //Checks if the current position is the same as newPosition
         {
-            float PositionX = Random.Range(-500f, 500f);
-            float PositionZ = Random.Range(-500f, 500f);
-            newPosition = new Vector3(PositionX, 0, PositionZ);
+            float PositionX = Random.Range(-500f, 500f);    //Takes a random number between -500 and 500
+            float PositionZ = Random.Range(-500f, 500f);    //Takes a random number between -500 and 500
+            newPosition = new Vector3(PositionX, 0, PositionZ); //Set newPosition to a random position on the play area
         }
-        this.transform.LookAt(newPosition);
-        this.transform.localPosition = Vector3.MoveTowards(transform.localPosition, newPosition, BoatSpeed * Time.fixedDeltaTime);
+        this.transform.LookAt(newPosition);     //Turn towards newPosition
+        this.transform.localPosition = Vector3.MoveTowards(transform.localPosition, newPosition, BoatSpeed * Time.fixedDeltaTime); //Move towards newPosition
         yield return new WaitForFixedUpdate();
     }
 
-    public IEnumerator __BoatSpeed(float speed)
-        {
-            BoatSpeed = speed;
-
+    public IEnumerator __BoatSpeed(float speed) //Makes BoatSpeed adjustable in the AI scripts
+    {
+            BoatSpeed = speed;  
             yield return new WaitForFixedUpdate();
         }
 
-    public IEnumerator __Health(float hp)
+    public IEnumerator __Health(float hp)   //Makes Health adjustable in the AI scripts
     {
-        Health = hp;
-
+        Health = hp;    
         yield return new WaitForFixedUpdate();
     }
 

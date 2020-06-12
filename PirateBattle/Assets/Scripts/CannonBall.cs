@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CannonBall : MonoBehaviour
 {
-    public float damage = 200.0f;
+    public float damage = 200.0f;   //Set CannonBall damage
 
     // Start is called before the first frame update
     void Start()
@@ -20,9 +20,9 @@ public class CannonBall : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Boat")
+        if (other.gameObject.tag == "Boat") //Checks for collision with ships
         {
-            Destroy(gameObject);
+            Destroy(gameObject);    //Destroys Cannonball after impact
         }
     }
 }

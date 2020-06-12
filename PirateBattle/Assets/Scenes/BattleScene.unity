@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 1222948033}
   - component: {fileID: 1222948032}
   - component: {fileID: 1222948031}
+  - component: {fileID: 1222948035}
   m_Layer: 4
   m_Name: Sea
   m_TagString: Untagged
@@ -201,7 +202,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e4aa1168aee1b4f9b839f005f727855c, type: 2}
+  - {fileID: 2100000, guid: 57cb7e9595801e044bf90ae710c961eb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -239,11 +240,30 @@ Transform:
   m_GameObject: {fileID: 1222948030}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 1, z: 100}
+  m_LocalScale: {x: 300, y: 1, z: 300}
   m_Children: []
   m_Father: {fileID: 966107633}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1222948035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222948030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011359c1a06c4bb696dc6f569300af05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UvRotateSpeed: 1
+  UvRotateDistance: 2
+  UvBumpRotateSpeed: 5
+  UvBumpRotateDistance: 2
+  depthTextureModeOn: 1
+  waterSyncWind: 0
+  windZone: {fileID: 0}
 --- !u!1 &1606057765
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +406,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 2000
-  field of view: 60
+  field of view: 44.9
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -411,13 +431,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1971055771}
-  m_LocalRotation: {x: 0.43387985, y: -0, z: -0, w: 0.9009708}
-  m_LocalPosition: {x: 0, y: 822.9, z: -845.4}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1499, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 51.428, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1001 &8487527655402104238
 PrefabInstance:
   m_ObjectHideFlags: 0
