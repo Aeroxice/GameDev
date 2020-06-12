@@ -12,7 +12,7 @@ public class BaseAI
     public PirateShipController Ship = null;
 
     // Events
-    public virtual void OnScannedRobot(ScannedRobotEvent e)
+    public virtual void OnScannedRobot(ScannedRobotEvent e, Vector3 temp)
     {
         // 
     }
